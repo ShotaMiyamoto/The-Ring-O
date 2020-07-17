@@ -1,0 +1,91 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6533604055079654368
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6533604055079654302}
+  - component: {fileID: 6533604055079654369}
+  m_Layer: 0
+  m_Name: GameDataStorageManager(DontDestroyOnLoad)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6533604055079654302
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6533604055079654368}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6533604055079654369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6533604055079654368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6524067a764dbed4e8a5a3a4e2b48e33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  battleCount: 0
+  admob: {fileID: 0}
+  bodyColors:
+  - {fileID: 2100000, guid: fe9541bf29a00e648948ecbc819fecda, type: 2}
+  - {fileID: 2100000, guid: d8b3a71a5e739474eafd0cdff0255430, type: 2}
+  - {fileID: 2100000, guid: 8af98a15704d52645bfe51c6536399ac, type: 2}
+  - {fileID: 2100000, guid: 134eb2931fb78f449bdef3386f17bb28, type: 2}
+  - {fileID: 2100000, guid: 24981a1e9f55c6a449020362b20adb8a, type: 2}
+  - {fileID: 2100000, guid: fdb90bcdf04d81e4d92e984acb1bea28, type: 2}
+  - {fileID: 2100000, guid: d7553a96fc8a55c4c86ca99462f2156c, type: 2}
+  - {fileID: 2100000, guid: b949a3b73c8e0174ca22bc906d667ca2, type: 2}
+  - {fileID: 2100000, guid: eaee8b94890e0684eaf5e0280c7b7bc9, type: 2}
+  - {fileID: 2100000, guid: 475ca41b44d6e834284dd513fff8e2e8, type: 2}
+  - {fileID: 2100000, guid: b65d23d35c7ddcc4baad2511c03bf977, type: 2}
+  - {fileID: 2100000, guid: d23f664f07bb04a40bed4265ab0a222e, type: 2}
+  icons_Costume:
+  - {fileID: 21300000, guid: 488475ea02458424f86fc4cb750263a5, type: 3}
+  - {fileID: 21300000, guid: fb479274f20858c4f8752015dd40b761, type: 3}
+  - {fileID: 21300000, guid: f870f7381a77efc498a59fa47ee5d7d0, type: 3}
+  - {fileID: 21300000, guid: 0bfd98910a86eaf4cba6451032b26570, type: 3}
+  - {fileID: 21300000, guid: 59cd036c93a5b364fb48bcd32f7bb8a1, type: 3}
+  - {fileID: 21300000, guid: 86ea5683e22312742842cdd0788a13fd, type: 3}
+  - {fileID: 21300000, guid: d1584dc0fa9c45d4b8f3ee21660613d3, type: 3}
+  - {fileID: 21300000, guid: 89ff0b3fd4f7513498a3e71d3ca38d7a, type: 3}
+  icons_BodyColor:
+  - {fileID: 21300000, guid: 5003a620b03500048869851c4ba1963c, type: 3}
+  - {fileID: 21300000, guid: ff6ed685ec9343b4faeb071dd1207a95, type: 3}
+  - {fileID: 21300000, guid: cc434268b3e12a04888bb05f6ec4d055, type: 3}
+  - {fileID: 21300000, guid: 0ddc17ca3c6457f4db905e463fd7fffd, type: 3}
+  - {fileID: 21300000, guid: b63490155aca1ac47beb58919fc507c3, type: 3}
+  - {fileID: 21300000, guid: 165b06dd0e091494ea09a5d75c8a8795, type: 3}
+  - {fileID: 21300000, guid: 37b5efd51d4d9ef47837c2ee6cb76067, type: 3}
+  - {fileID: 21300000, guid: cf7aa28c984378444bac2656dc4e1993, type: 3}
+  - {fileID: 21300000, guid: e4ceeca656c518341be46245449e6c7b, type: 3}
+  - {fileID: 21300000, guid: e4eae248a044e2a43a1599f27c9b7b59, type: 3}
+  - {fileID: 21300000, guid: dc32b92538217444bb08a7661dd2f23e, type: 3}
+  - {fileID: 21300000, guid: d1a39a3e1c3623641b8194a2b58e1f76, type: 3}
+  unLockedCostumeList: 
+  unLockedCostumeListString: 0
+  unLockedBodyColorList: 
+  unLockedBodyColorListString: 0
+  selectedCostumeNum: 0
+  selectedBodyColorNum: 0
+  money: 0
+  bestConsecutiveWins: 0
+  saveIconAnim: {fileID: 0}
