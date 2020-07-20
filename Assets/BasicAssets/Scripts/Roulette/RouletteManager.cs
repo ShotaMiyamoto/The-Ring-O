@@ -93,8 +93,12 @@ public class RouletteManager : MonoBehaviour
                     {
                         Debug.Log("ターゲット角度に到着");
                         transform.rotation = targetAngle;
-                        closeButton.SetActive(true); //Closeボタン表示
                         canRotate = false;
+                        if(prizeID != 3)
+                        {
+                            closeButton.SetActive(true); //Closeボタン表示
+                        }
+
                         Invoke("GetReward", 0.5f);
                     }
                     else
@@ -263,7 +267,6 @@ public class RouletteManager : MonoBehaviour
 
             case 3: //4番目　もうワンチャンス
                 SetActivateStartButton(true);
-
                 Debug.Log("もう一度ルーレットスタート！");
                 break;
 

@@ -52,6 +52,12 @@ public class ShopManager : MonoBehaviour
     private Item choosingItemPanel = Item.BodyColor;
     private int selectingItemNum = 0;
 
+    //============================SecretItem用処理関連=============================
+    public bool isOpenSecretItemPanel = false;
+    public GameObject secretBodyColorButtons;
+    public GameObject secretCostumeButtons;
+    public GameObject nextPageButton; //右矢印
+    public GameObject backPageButton; //左矢印
 
     private void Start()
     {
@@ -63,7 +69,7 @@ public class ShopManager : MonoBehaviour
 
     public void ShowShopMenu(bool value)
     {
-        if (value)
+        if (value == true) 
         {
             ShowBodyColorButtons(); //BodyColor用のカメラとメニュー表示にする
 
@@ -85,6 +91,8 @@ public class ShopManager : MonoBehaviour
             {
                 purchasePanel.GetComponent<Animator>().SetBool("canAppear", false); //購入画面を非表示にする
             }
+
+            isOpenSecretItemPanel = false; //デフォルトアイテム画面状態にする
             shopUI.SetActive(false); //メニュー画面を非表示
 
             cosBody[currentCostumeNum].SetActive(false); //メニューを閉じるときは頭コスチュームの姿にする
@@ -112,8 +120,17 @@ public class ShopManager : MonoBehaviour
 
         bodyColorButtonImage.color = new Color(0, 0, 0, 190f/255f);
         costumeButtonImage.color = new Color(0, 0, 0, 80f/255f);
-        bodyColorButtons.SetActive(true);
+        
+        isOpenSecretItemPanel = false;
+        secretCostumeButtons.SetActive(false);
         costumeButtons.SetActive(false);
+
+        //右矢印ボタンを表示
+        nextPageButton.SetActive(true);
+        backPageButton.SetActive(false);
+
+        bodyColorButtons.SetActive(true);
+
         if(purchasePanel.activeInHierarchy == true)
         {
             purchasePanel.GetComponent<Animator>().SetBool("canAppear", false);
@@ -134,8 +151,18 @@ public class ShopManager : MonoBehaviour
 
         costumeButtonImage.color = new Color(0, 0, 0, 190f/255f);
         bodyColorButtonImage.color = new Color(0, 0, 0, 80f/255f);
-        costumeButtons.SetActive(true);
+
+        isOpenSecretItemPanel = false;
         bodyColorButtons.SetActive(false);
+        secretBodyColorButtons.SetActive(false);
+
+
+        //右矢印ボタンを表示
+        nextPageButton.SetActive(true);
+        backPageButton.SetActive(false);
+
+        costumeButtons.SetActive(true);
+
         if (purchasePanel.activeInHierarchy == true)
         {
             purchasePanel.GetComponent<Animator>().SetBool("canAppear", false);
@@ -204,6 +231,73 @@ public class ShopManager : MonoBehaviour
         }
     }
 
+    public void SwitchToSecretItemPanel()
+    {
+        switch (choosingItemPanel)
+        {
+            case Item.BodyColor:
+
+                if (isOpenSecretItemPanel)
+                {
+                    //通常BodyColorボタンを表示
+                    secretBodyColorButtons.SetActive(false);
+                    bodyColorButtons.SetActive(true);
+
+                    //右矢印ボタンを表示
+                    nextPageButton.SetActive(true);
+                    backPageButton.SetActive(false);
+
+                    isOpenSecretItemPanel = false;
+                }
+                else
+                {
+                    //シークレットBodyColorボタンを表示
+                    bodyColorButtons.SetActive(false);
+                    secretBodyColorButtons.SetActive(true);
+
+                    //左矢印ボタンを表示
+                    backPageButton.SetActive(true);
+                    nextPageButton.SetActive(false);
+
+                    isOpenSecretItemPanel = true;
+                }
+
+                break;
+
+            case Item.Costume:
+
+                if (isOpenSecretItemPanel)
+                {
+                    //通常Costumeボタンを表示
+                    secretCostumeButtons.SetActive(false);
+                    costumeButtons.SetActive(true);
+
+                    //右矢印ボタンを表示
+                    nextPageButton.SetActive(true);
+                    backPageButton.SetActive(false);
+
+                    isOpenSecretItemPanel = false;
+                }
+                else
+                {
+                    //シークレットCostumeボタンを表示
+                    costumeButtons.SetActive(false);
+                    secretCostumeButtons.SetActive(true);
+
+                    //左矢印ボタンを表示
+                    backPageButton.SetActive(true);
+                    nextPageButton.SetActive(false);
+
+                    isOpenSecretItemPanel = true;
+                }
+
+                break;
+
+            default:
+                Debug.Log("そんなアイテムジャンルはない");
+                break;
+        }
+    }
 
 
     public void ActivePurchasePanel(int itemNum, int beforeAmount, int afterAmount)
