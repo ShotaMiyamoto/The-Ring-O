@@ -14067,7 +14067,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: +500
+  m_Text: +500 G
 --- !u!222 &480467135
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -56512,12 +56512,12 @@ GameObject:
   - component: {fileID: 1848633542}
   - component: {fileID: 1848633541}
   m_Layer: 5
-  m_Name: Button_+500
+  m_Name: Button_+500G
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1848633540
 RectTransform:
   m_ObjectHideFlags: 0
