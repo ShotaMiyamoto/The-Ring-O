@@ -44,7 +44,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   battleCount: 0
-  admob: {fileID: 0}
   bodyColors:
   - {fileID: 2100000, guid: fe9541bf29a00e648948ecbc819fecda, type: 2}
   - {fileID: 2100000, guid: d8b3a71a5e739474eafd0cdff0255430, type: 2}
@@ -67,6 +66,14 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 86ea5683e22312742842cdd0788a13fd, type: 3}
   - {fileID: 21300000, guid: d1584dc0fa9c45d4b8f3ee21660613d3, type: 3}
   - {fileID: 21300000, guid: 89ff0b3fd4f7513498a3e71d3ca38d7a, type: 3}
+  - {fileID: 21300000, guid: 94ca22b5febc2104092f32631551645f, type: 3}
+  - {fileID: 21300000, guid: 1ec24a704c2512a4fb8c5f44b7491c96, type: 3}
+  - {fileID: 21300000, guid: 63843da3e63f097469a0d9531a685468, type: 3}
+  - {fileID: 21300000, guid: 2322fceae869248419910c0a799faf35, type: 3}
+  - {fileID: 21300000, guid: 1e362219ce79d9a4fb3e15e68fef3d71, type: 3}
+  - {fileID: 21300000, guid: 656ed8c608e35c1489ad93a9f95d927d, type: 3}
+  - {fileID: 21300000, guid: 2b18b054194b4404d9b5bd554824d53c, type: 3}
+  - {fileID: 21300000, guid: 31f96f86e4f7cc648842afd79a5c5f1e, type: 3}
   icons_BodyColor:
   - {fileID: 21300000, guid: 5003a620b03500048869851c4ba1963c, type: 3}
   - {fileID: 21300000, guid: ff6ed685ec9343b4faeb071dd1207a95, type: 3}

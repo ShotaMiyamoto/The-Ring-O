@@ -383,6 +383,17 @@ public class GameDataStorageManager : SingletonMonoBehaviour<GameDataStorageMana
         DataSave();
     }
 
+    /// <summary>
+    /// すべてのアイテムを開放
+    /// </summary>
+    public void UnlockAllItems()
+    {
+        for(int i = 0; i < icons_Costume.Length - 8; i++)
+        {
+            UnlockCostume(i + 8);
+        }
+        
+    }
 
     /// <summary>
     /// Costumeの開放

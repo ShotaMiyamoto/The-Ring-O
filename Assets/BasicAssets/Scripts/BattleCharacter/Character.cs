@@ -371,8 +371,8 @@ public class Character : MonoBehaviour
             {
                 isTouching = true; //接触フラグ有効化
                 //Debug.Log(this.name +":  " + "speed:" + speed + "  force:" + force);
-                Vector3 dir = other.gameObject.transform.position - this.transform.position;
-                other.gameObject.GetComponent<Rigidbody>().AddForce(dir * force, ForceMode.VelocityChange); //質量無視のImpulse
+                Vector3 dir = other.gameObject.transform.position - this.transform.position; //吹っ飛ばす方向を算出
+                other.gameObject.GetComponent<Rigidbody>().AddForce(dir * force, ForceMode.VelocityChange); //質量無視のImpulseで飛ばす
                 Debug.Log("Force : " + force + "  Name : " + this.gameObject.name);
 
                 if (force > maxForce - 0.3f) //強打なら赤いエフェクト

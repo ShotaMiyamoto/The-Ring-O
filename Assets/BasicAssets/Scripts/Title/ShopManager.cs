@@ -58,19 +58,30 @@ public class ShopManager : MonoBehaviour
     public GameObject secretCostumeButtons;
     public GameObject nextPageButton; //右矢印
     public GameObject backPageButton; //左矢印
+    public GameObject[] lockedCostumeIcons; //コスチュームの未開放アイコン
+    public GameObject[] lockedBodyColorIcons; //BodyColorの未開放アイコン
 
     private void Start()
     {
         GDSM_Instance = GameDataStorageManager.Instance;
-        SyncAppear();
         ShowShopMenu(false);
+        SyncAllShopInfo();
+    }
+
+    //ショップ情報を最新に更新する
+    public void SyncAllShopInfo()
+    {
+        SyncAppear();
         SyncPriceTexts();
+        SyncLockedIcon();
     }
 
     public void ShowShopMenu(bool value)
     {
         if (value == true) 
         {
+            SyncAllShopInfo(); //ショップ情報更新
+
             ShowBodyColorButtons(); //BodyColor用のカメラとメニュー表示にする
 
             StartCoroutine(DelayMethod(1f, () =>
@@ -177,51 +188,91 @@ public class ShopManager : MonoBehaviour
         switch (choosingItemPanel)
         {
             case Item.BodyColor:
-                //所持してるか確認。
-                if (!GDSM_Instance.CheckBodyColorUnlocked(itemNum))
+
+                if (itemNum <= 11) //11番以前（コモンアイテム）の場合
                 {
-                    //所持金が足りているか確認。
-                    if (moneyManager.CheckMoneyAmount(bodyColorPrices[itemNum]))
+                    //所持してるか確認。
+                    if (!GDSM_Instance.CheckBodyColorUnlocked(itemNum))
                     {
-                        ActivePurchasePanel(itemNum, moneyManager.GetCurrentMoney, (moneyManager.GetCurrentMoney - bodyColorPrices[itemNum]));
-                        Debug.Log("購入可能。パネル表示");
+                        //所持金が足りているか確認。
+                        if (moneyManager.CheckMoneyAmount(bodyColorPrices[itemNum]))
+                        {
+                            ActivePurchasePanel(itemNum, moneyManager.GetCurrentMoney, (moneyManager.GetCurrentMoney - bodyColorPrices[itemNum]));
+                            Debug.Log("購入可能。パネル表示");
+                        }
+                        else
+                        {
+                            moneyManager.NotEnoughtMoneyAnimation();
+                            Debug.Log("購入不可。アニメーション再生");
+                        }
                     }
                     else
                     {
-                        moneyManager.NotEnoughtMoneyAnimation();
-                        Debug.Log("購入不可。アニメーション再生");
+                        Debug.Log("すでに持ってるアイテムだよ");
+                        ChangeBodyColor(itemNum);
+                        GDSM_Instance.ChangeSelectedBodyColor(itemNum); //選択アイテムを変更
+                    }
+
+                }
+                else //8番以上（レアアイテム）の場合
+                {
+                    //所持してるか確認。
+                    if (!GDSM_Instance.CheckBodyColorUnlocked(itemNum))
+                    {
+                        //未所持アニメーション再生
+                        Debug.Log("持っていないレアアイテムだよ");
+                    }
+                    else
+                    {
+                        Debug.Log("すでに持ってるアイテムだよ");
+                        ChangeBodyColor(itemNum);
+                        GDSM_Instance.ChangeSelectedBodyColor(itemNum); //選択アイテムを変更
                     }
                 }
-                else
-                {
-                    Debug.Log("すでに持ってるアイテムだよ");
-                    ChangeBodyColor(itemNum);
-                    GDSM_Instance.ChangeSelectedBodyColor(itemNum);　//選択アイテムを変更
-                }
+
                 break;
 
 
             case Item.Costume:
-                //所持してるか確認。
-                if (!GDSM_Instance.CheckCostumeUnlocked(itemNum))
+
+                if (itemNum <= 7) //7番以前（コモンアイテム）の場合
                 {
-                    //所持金が足りているか確認
-                    if (moneyManager.CheckMoneyAmount(costumePrices[itemNum]))
+                    //所持してるか確認。
+                    if (!GDSM_Instance.CheckCostumeUnlocked(itemNum))
                     {
-                        Debug.Log("購入可能。パネル表示");
-                        ActivePurchasePanel(itemNum, moneyManager.GetCurrentMoney, (moneyManager.GetCurrentMoney - costumePrices[itemNum]));
+                        //所持金が足りているか確認
+                        if (moneyManager.CheckMoneyAmount(costumePrices[itemNum]))
+                        {
+                            Debug.Log("購入可能。パネル表示");
+                            ActivePurchasePanel(itemNum, moneyManager.GetCurrentMoney, (moneyManager.GetCurrentMoney - costumePrices[itemNum]));
+                        }
+                        else
+                        {
+                            moneyManager.NotEnoughtMoneyAnimation();
+                            Debug.Log("購入不可。アニメーション再生");
+                        }
                     }
                     else
                     {
-                        moneyManager.NotEnoughtMoneyAnimation();
-                        Debug.Log("購入不可。アニメーション再生");
+                        Debug.Log("すでに持ってるアイテムだよ");
+                        ChangeCostume(itemNum);
+                        GDSM_Instance.ChangeSelectedCostume(itemNum); //選択アイテムを変更
                     }
                 }
-                else
+                else //8番以上（レアアイテム）の場合
                 {
-                    Debug.Log("すでに持ってるアイテムだよ");
-                    ChangeCostume(itemNum);
-                    GDSM_Instance.ChangeSelectedCostume(itemNum); //選択アイテムを変更
+                    //所持してるか確認。
+                    if (!GDSM_Instance.CheckCostumeUnlocked(itemNum))
+                    {
+                        //未所持アニメーション再生
+                        Debug.Log("持っていないレアアイテムだよ");
+                    }
+                    else
+                    {
+                        Debug.Log("すでに持ってるアイテムだよ");
+                        ChangeCostume(itemNum);
+                        GDSM_Instance.ChangeSelectedCostume(itemNum); //選択アイテムを変更
+                    }
                 }
                 break;
 
@@ -399,8 +450,11 @@ public class ShopManager : MonoBehaviour
 
         foreach (var value in list)
         {
-            ChangePriceText(value);
-            Debug.Log("BodyColor：" + value + "番更新");
+            if (value < 12) 
+            {
+                ChangePriceText(value);
+                Debug.Log("BodyColor：" + value + "番更新");
+            }
         }
 
         //Costumeの値段更新
@@ -409,8 +463,11 @@ public class ShopManager : MonoBehaviour
 
         foreach (var value in list)
         {
-            ChangePriceText(value);
-            Debug.Log("Costume：" + value + "番更新");
+            if(value < 8)
+            {
+                ChangePriceText(value);
+                Debug.Log("Costume：" + value + "番更新");
+            }
         }
     }
 
@@ -431,6 +488,33 @@ public class ShopManager : MonoBehaviour
             default:
                 Debug.Log("そんな値段テキストは無い");
                 break;
+        }
+    }
+
+
+    /// <summary>
+    /// ショップ内のレアアイテムのロックアイコン情報を最新状態に更新する
+    /// </summary>
+    public void SyncLockedIcon()
+    {
+        List<int> cosList = GDSM_Instance.GetUnlockedCostumeList.FindAll(n => n >= 8); //8番以上の番号を検索して代入
+        if(cosList != null)
+        {
+            foreach(var i in cosList)
+            {
+                lockedCostumeIcons[i - 8].SetActive(false);
+                Debug.Log((i - 8) + "番のロックアイコン非表示");
+            }
+        }
+
+        List<int> bdcolList = GDSM_Instance.GetUnlockedBodyColorList.FindAll(n => n >= 12); //12番以上の番号を検索して代入
+        if(bdcolList != null)
+        {
+            foreach(var i in bdcolList)
+            {
+                lockedBodyColorIcons[i - 12].SetActive(false);
+                Debug.Log((i - 12) + "番のロックアイコンを非表示");
+            }
         }
     }
 
